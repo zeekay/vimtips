@@ -1,8 +1,50 @@
-*vimtips.txt*	     For Vim version 7.3	 Last change: 2012 February 25
+*vimtips*            For Vim version 7.3           Last change: 2012 February 25
 
-Searching                                           |vimtips-searching|
-Substitution                                        |vimtips-substitution|
-Global command                                      |vimtips-global-command|
+Abbreviations & maps                                     |vimtips-abbreviations|
+CSV                                                                |vimtips-csv|
+Changing case                                              |vimtips-change-case|
+Command line tricks                                       |vimtips-command-line|
+Completion                                                  |vimtips-completion|
+Counting / numbering                                           |vimtips-numbers|
+Diff                                                              |vimtips-diff|
+Digraphs / encoding                                           |vimtips-digraphs|
+Easter eggs                                                |vimtips-easter-eggs|
+Encryption/obfuscation                                      |vimtips-encryption|
+Essential                                                    |vimtips-essential|
+Exernal programs                                        |vimtips-external-progs|
+Exploring                                                    |vimtips-exploring|
+Expression register                                |vimtips-expression-register|
+File names                                                  |vimtips-file-names|
+File permissions                                      |vimtips-file-permissions|
+Filetype / syntax                                             |vimtips-filetype|
+Folding                                                        |vimtips-folding|
+Formatting text                                        |vimtips-formatting-text|
+Functions                                                    |vimtips-functions|
+Global command                                          |vimtips-global-command|
+Grep                                                              |vimtips-grep|
+Help                                                              |vimtips-help|
+Insert Mode                                                |vimtips-insert-mode|
+Macros                                                          |vimtips-macros|
+Markers                                                        |vimtips-markers|
+Misc                                                              |vimtips-misc|
+Modeline                                                      |vimtips-modeline|
+Multiple File operations                      |vimtips-multiple-file-operations|
+Multiple Files                                          |vimtips-multiple-files|
+Pasting                                                        |vimtips-pasting|
+Registers                                                    |vimtips-registers|
+Regular expressions                                |vimtips-regular-expressions|
+Repeating                                                   |vim-tips-repeating|
+Resources                                                    |vimtips-resources|
+Searching                                                    |vimtips-searching|
+Sessions                                                      |vimtips-sessions|
+Shifting/indenting                                  |vimtips-shifting-indenting|
+Substitution                                              |vimtips-substitution|
+Tabs                                                              |vimtips-tabs|
+Tags                                                              |vimtips-tags|
+Text objects                                              |vimtips-text-objects|
+Tricks                                                          |vimtips-tricks|
+Vimrc                                                            |vimtips-vimrc|
+Visual mode                                                |vimtips-visual-mode|
 
 This collection of tips, originally from http://rayninfo.co.uk/vimtips.html,
 is now being maintained at http://zzapper.co.uk/vimtips.html. For the latest
@@ -524,7 +566,7 @@ WORKING WITH EXTERNAL PROGRAMS                          *vimtips-external-progs*
 :new | r!nl #                  [N]
 
 ==============================================================================
-MULTIPLE FILEST                                         *vimtips-multiple-files*
+MULTIPLE FILES                                          *vimtips-multiple-files*
 
 :bn              : goto next buffer
 :bp              : goto previous buffer
