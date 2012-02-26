@@ -238,7 +238,6 @@ SUBSTITUTION                                              *vimtips-substitution*
 
 " substitute singular or plural
 :'a,'bs/bucket\(s\)*/bowl\1/gic   [N]
-----------------------------------------
 
 " all following performing similar task, substitute within substitution
 
@@ -254,8 +253,8 @@ SUBSTITUTION                                              *vimtips-substitution*
 " Substitute inside substitute
 :%s/.*/\='cp '.submatch(0).' all/'.substitute(submatch(0),'/','_','g')/
 
-=============================================================================
-GLOBAL COMMAND                                         *vimtips-global-command*
+==============================================================================
+GLOBAL COMMAND                                          *vimtips-global-command*
 
 :g/gladiolli/#              : display with line numbers (YOU WANT THIS!)
 :g/fred.*joe.*dick/         : display all lines fred,joe & dick
@@ -323,24 +322,19 @@ GLOBAL COMMAND                                         *vimtips-global-command*
 "send output of previous global command to a new window
 :nmap <F3>  :redir @a<CR>:g//<CR>:redir END<CR>:new<CR>:put! a<CR><CR>
 
-"----------------------------------------
 " *Best-Global-combined-with-substitute* (*power-editing*)
 :'a,'bg/fred/s/joe/susan/gic :  can use memory to extend matching
 :/fred/,/joe/s/fred/joe/gic :  non-line based (ultra)
 :/biz/,/any/g/article/s/wheel/bucket/gic:  non-line based [N]
-----------------------------------------
 
 " Find fred before beginning search for joe
 :/fred/;/joe/-2,/sid/+3s/sally/alley/gIC
 
-"----------------------------------------
 " create a new file for each line of file eg 1.txt,2.txt,3,txt etc
 :g/^/exe ".w ".line(".").".txt"
-"----------------------------------------
 
 " chain an external command
 :.g/^/ exe ".!sed 's/N/X/'" | s/I/Q/    [N]
-"----------------------------------------
 
 =============================================================================
 REPEATING                                                  *vim-tips-repeating*
@@ -358,7 +352,6 @@ g&     last substitute on all lines
 :~     last substitute
 :help repeating
 
-----------------------------------------
 " Summary of repeated searches
 ;      last f, t, F or T
 ,      last f, t, F or T in opposite direction
@@ -427,7 +420,6 @@ EXPLORING                                                    *vimtips-exploring*
 :args *.php                     : open list of files (you need this!)
 :lcd %:p:h                      : change to directory of current file
 :autocmd BufEnter * lcd %:p:h   : change to directory of current file automatically (put in _vimrc)
-----------------------------------------
 
 ==============================================================================
 CHANGING CASE                                              *vimtips-change-case*
@@ -523,16 +515,13 @@ set wak=no       : :h winaltkeys
 map <f2> /price only\\|versus/ :in a map need to backslash the \
 # type table,,, to get <table></table>       ### Cool ###
 imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>kA
-----------------------------------------
 
 " Simple PHP debugging display all variables yanked into register a
 iab phpdb exit("<hr>Debug <C-R>a  ");
-----------------------------------------
 
 " Using a register as a map (preload registers in .vimrc)
 :let @m=":'a,'bs/"
 :let @s=":%!sort -u"
-----------------------------------------
 
 ==============================================================================
 TRICKS                                                          *vimtips-tricks*
@@ -598,7 +587,6 @@ MULTIPLE FILES                                          *vimtips-multiple-files*
 " Quick jumping between splits
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
-----------------------------------------
 
 =============================================================================
 MACROS                                                         *vimtips-macros*
@@ -631,13 +619,11 @@ V}
 :'<,'>
 4)Complete as follows
 :'<,'>norm @q
-----------------------------------------
 
 "combining a recording with a map (to end up in command mode)
 
 "here we operate on a file with a recording, then move to the next file [N]
 :nnoremap ] @q:update<bar>bd
-----------------------------------------
 
 ==============================================================================
 VISUAL MODE                                                *vimtips-visual-mode*
@@ -660,21 +646,18 @@ V}gJ                            : Join Visual block w/o adding spaces
 
 " Delete first 2 characters of 10 successive lines
 0<c-v>10j2ld  (use Control Q on win32) [C]
-----------------------------------------
 
 " how to copy a set of columns using VISUAL BLOCK
 
 " visual block (AKA columnwise selection) (NOT BY ordinary v command)
 <C-V> then select "column(s)" with motion commands (win32 <C-Q>)
 then c,d,y,r etc
-----------------------------------------
 
 " how to overwrite a visual-block of text with another such block [C]
 
 " move with hjkl etc
 Pick the first block: ctrl-v move y
 Pick the second block: ctrl-v move P <esc>
-----------------------------------------
 
 ==============================================================================
 TEXT OBJECTS                                              *vimtips-text-objects*
@@ -922,14 +905,12 @@ HELP                                                              *vimtips-help*
 <C-[>, <C-T>            : Move back & Forth in HELP History
 gvim -h                 : VIM Command Line Help
 :cabbrev h tab h        : open help in a tab [N]
-----------------------------------------
 
 " where was an option set
 :scriptnames            : list all plugins, _vimrcs loaded (super)
 :verbose set history?   : reveals value of history and where set
 :function               : list functions
 :func SearchCompl       : List particular function
-----------------------------------------
 
 " *making your own VIM help*
 :helptags $VIMRUNTIME/doc
@@ -946,7 +927,6 @@ COUNTING / NUMBERING                                           *vimtips-numbers*
 :g/^/exec "s/^/".strpart(line(".")."    ", 0, 4)
 :%s/^/\=strpart(line(".")."     ", 0, 5)
 :%s/^/\=line('.'). ' '
-----------------------------------------
 
 " *numbering lines VIM way*
 :set number                       : show line numbers
@@ -966,7 +946,6 @@ qqmnYP`n^Aq                       : in recording q repeat with @q
 
 " advanced incrementing
 http://vim.sourceforge.net/tip_view.php?tip_id=150
-----------------------------------------
 
 " *advanced incrementing* (really useful)
 
@@ -983,7 +962,6 @@ endfunction
 
 " create a map for INC
 cab viminc :let I=223 \| 'a,'bs/$/\=INC(5)/
-----------------------------------------
 
 " *generate a list of numbers*  23-64
 o23<ESC>qqYp<C-A>q40@q
@@ -993,7 +971,6 @@ g<C-G>                                 # counts words
 :echo line("'b")-line("'a")            # count lines between markers a and b [N]
 :'a,'bs/^//n                           # count lines between markers a and b
 :'a,'bs/somestring//gn                 # count occurences of a string
-----------------------------------------
 
 
 ==============================================================================
@@ -1153,14 +1130,12 @@ zc                                : re-close fold
 " also visualise a section of code then type zf [N]
 :help folding
 zfG      : fold everything after this line [N]
-----------------------------------------
 
 " a folding method
 vim: filetype=help foldmethod=marker foldmarker=<<<,>>>
 A really big section closed with a tag <<<
 --- remember folds can be nested ---
 Closing tag >>>
-----------------------------------------
 
 ==============================================================================
 FILE NAMES                                                  *vimtips-file-names*
@@ -1181,7 +1156,6 @@ FILE NAMES                                                  *vimtips-file-names*
 " pull full path name into paste buffer for attachment to email etc
 nnoremap <F2> :let @*=expand("%:p")<cr> :unix
 nnoremap <F2> :let @*=substitute(expand("%:p"), "/", "\\", "g")<cr> :win32
-----------------------------------------
 
 " Simple Shell script to rename files w/o leaving vim
 $ vim
@@ -1205,19 +1179,16 @@ MISC                                                              *vimtips-misc*
 
 " How to paste "normal commands" w/o entering insert mode
 :norm qqy$jq
-----------------------------------------
 
 " delete without destroying default buffer contents
 
 "_d                               : what you've ALWAYS wanted
 
 "_dw                              : eg delete word (use blackhole)
-----------------------------------------
 
 " example of setting your own highlighting
 :syn match DoubleSpace "  "
 :hi def DoubleSpace guibg=#e0e0e0
-----------------------------------------
 
 " reproduce previous line word by word
 imap ]  @@@<ESC>hhkyWjl?@@@<CR>P/@@@<CR>3s
@@ -1229,14 +1200,12 @@ autocmd BufReadPost *
      \   exe "normal! g`\"" |
      \ endif
 
-----------------------------------------
 # using gVIM with Cygwin on a Windows PC
 if has('win32')
 source $VIMRUNTIME/mswin.vim
 behave mswin
 set shell=c:\\cygwin\\bin\\bash.exe shellcmdflag=-c shellxquote=\"
 endif
-----------------------------------------
 
 " *Just Another Vim Hacker JAVH*
 vim -c ":%s%s*%Cyrnfr)fcbafbe[Oenz(Zbbyranne%|:%s)[[()])-)Ig|norm Vg?"
@@ -1248,47 +1217,39 @@ vim -c ":%s%s*%Cyrnfr)fcbafbe[Oenz(Zbbyranne%|:%s)[[()])-)Ig|norm Vg?"
 " running file thru an external program (eg php)
 map   <f9>   :w<CR>:!c:/php/php.exe %<CR>
 map   <f2>   :w<CR>:!perl -c %<CR>
-----------------------------------------
 
 " capturing output of current script in a separate buffer
 :new | r!perl #                   : opens new buffer,read other buffer
 :new! x.out | r!perl #            : same with named file
 :new+read!ls
-----------------------------------------
 
 " create a new buffer, paste a register "q" into it, then sort new buffer
 :new +put q|%!sort
-----------------------------------------
 
 " Inserting DOS Carriage Returns
 :%s/$/\<C-V><C-M>&/g          :  that's what you type
 :%s/$/\<C-Q><C-M>&/g          :  for Win32
 :%s/$/\^M&/g                  :  what you'll see where ^M is ONE character
-----------------------------------------
 
 " automatically delete trailing Dos-returns,whitespace
 autocmd BufRead * silent! %s/[\r \t]\+$//
 autocmd BufEnter *.php :%s/[ \t\r]\+$//e
-----------------------------------------
 
 " perform an action on a particular file or file type
 autocmd VimEnter c:/intranet/note011.txt normal! ggVGg?
 autocmd FileType *.pl exec('set fileformats=unix')
-----------------------------------------
 
 " Retrieving last command line command for copy & pasting into text
 i<c-r>:
 
 " Retrieving last Search Command for copy & pasting into text
 i<c-r>/
-----------------------------------------
 
 " Substituting a Visual area
 
 " select visual area as usual (:h visual) then type :s/Emacs/Vim/ etc
 :'<,'>s/Emacs/Vim/g               : REMEMBER you dont type the '<.'>
 gv                                : Re-select the previous visual area (ULTRA)
-----------------------------------------
 
 [I     : show lines matching word under cursor <cword> (super)
 
