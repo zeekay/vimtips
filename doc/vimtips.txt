@@ -53,78 +53,79 @@ version in this format please visit https://github.com/zeekay/vimtips.
 ==============================================================================
 SEARCHING                                                    *vimtips-searching*
 
-/joe/e                      : cursor set to End of match
-3/joe/e+1                   : find 3rd joe cursor set to End of match plus 1 [C]
-/joe/s-2                    : cursor set to Start of match minus 2
-/joe/+3                     : find joe move cursor 3 lines down
-/^joe.*fred.*bill/          : find joe AND fred AND Bill (Joe at start of line)
-/^[A-J]/                    : search for lines beginning with one or more A-J
-/begin\_.*end               : search over possible multiple lines
-/fred\_s*joe/               : any whitespace including newline [C]
-/fred\|joe                  : Search for FRED OR JOE
-/.*fred\&.*joe              : Search for FRED AND JOE in any ORDER!
-/\<fred\>/                  : search for fred but not alfred or frederick [C]
-/\<\d\d\d\d\>               : Search for exactly 4 digit numbers
-/\D\d\d\d\d\D               : Search for exactly 4 digit numbers
-/\<\d\{4}\>                 : same thing
-/\([^0-9]\|^\)%.*%          : Search for absence of a digit or beginning of line
+Basics >
+    /joe/e                      : cursor set to End of match
+    3/joe/e+1                   : find 3rd joe cursor set to End of match plus 1 [C]
+    /joe/s-2                    : cursor set to Start of match minus 2
+    /joe/+3                     : find joe move cursor 3 lines down
+    /^joe.*fred.*bill/          : find joe AND fred AND Bill (Joe at start of line)
+    /^[A-J]/                    : search for lines beginning with one or more A-J
+    /begin\_.*end               : search over possible multiple lines
+    /fred\_s*joe/               : any whitespace including newline [C]
+    /fred\|joe                  : Search for FRED OR JOE
+    /.*fred\&.*joe              : Search for FRED AND JOE in any ORDER!
+    /\<fred\>/                  : search for fred but not alfred or frederick [C]
+    /\<\d\d\d\d\>               : Search for exactly 4 digit numbers
+    /\D\d\d\d\d\D               : Search for exactly 4 digit numbers
+    /\<\d\{4}\>                 : same thing
+    /\([^0-9]\|^\)%.*%          : Search for absence of a digit or beginning of line
 
-" finding empty lines
-/^\n\{3}                    : find 3 empty lines
-/^str.*\nstr                : find 2 successive lines starting with str
-/\(^str.*\n\)\{2}           : find 2 successive lines starting with str
+Finding empty lines >
+    /^\n\{3}                    : find 3 empty lines
+    /^str.*\nstr                : find 2 successive lines starting with str
+    /\(^str.*\n\)\{2}           : find 2 successive lines starting with str
 
-" using rexexp memory in a search
-/\(fred\).*\(joe\).*\2.*\1
+Using rexexp memory in a search >
+    /\(fred\).*\(joe\).*\2.*\1
 
-" Repeating the Regexp (rather than what the Regexp finds)
-/^\([^,]*,\)\{8}
+Repeating the Regexp (rather than what the Regexp finds) >
+    /^\([^,]*,\)\{8}
 
-" Operate until string found [N]
-d/fred/                                :delete until fred
-y/fred/                                :yank until fred
-c/fred/e                               :change until fred end
+Operate until string found >
+    d/fred/                                :delete until fred
+    y/fred/                                :yank until fred
+    c/fred/e                               :change until fred end
 
-" visual searching
-:vmap // y/<C-R>"<CR>       : search for visually highlighted text
-:vmap <silent> //    y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR> : with spec chars
+Visual searching >
+    vmap // y/<C-R>"<CR>       : search for visually highlighted text
+    vmap <silent> //    y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR> : with spec chars
 
-" \zs and \ze regex delimiters :h /\zs
-/<\zs[^>]*\ze>              : search for tag contents, ignoring chevrons
+\zs and \ze regex delimiters see :h /\zs >
+    /<\zs[^>]*\ze>              : search for tag contents, ignoring chevrons
 
-" zero-width :h /\@=
-/<\@<=[^>]*>\@=             : search for tag contents, ignoring chevrons
-/<\@<=\_[^>]*>\@=           : search for tags across possible multiple lines
+Zero-width :h /\@= >
+    /<\@<=[^>]*>\@=             : search for tag contents, ignoring chevrons
+    /<\@<=\_[^>]*>\@=           : search for tags across possible multiple lines
 
-" searching over multiple lines \_ means including newline
-/<!--\_p\{-}-->                   : search for multiple line comments
-/fred\_s*joe/                     : any whitespace including newline [C]
-/bugs\(\_.\)*bunny                : bugs followed by bunny anywhere in file
-:h \_                             : help
+Searching over multiple lines \_ means including newline >
+    /<!--\_p\{-}-->                   : search for multiple line comments
+    /fred\_s*joe/                     : any whitespace including newline [C]
+    /bugs\(\_.\)*bunny                : bugs followed by bunny anywhere in file
+    h \_                              : help
 
-" search for declaration of subroutine/function under cursor
-:nmap gx yiw/^\(sub\<bar>function\)\s\+<C-R>"<CR>
+Search for declaration of subroutine/function under cursor >
+    :nmap gx yiw/^\(sub\<bar>function\)\s\+<C-R>"<CR>
 
-" multiple file search
-:bufdo /searchstr/                : use :rewind to recommence search
+Multiple file search >
+    :bufdo /searchstr/                : use :rewind to recommence search
 
-" multiple file search better but cheating
-:bufdo %s/searchstr/&/gic   : say n and then a to stop
+Multiple file search better but cheating >
+    :bufdo %s/searchstr/&/gic   : say n and then a to stop
 
-" How to search for a URL without backslashing
-?http://www.vim.org/        : (first) search BACKWARDS!!! clever huh!
+How to search for a URL without backslashing >
+    ?http://www.vim.org/        : (first) search BACKWARDS!!! clever huh!
 
-" Specify what you are NOT searching for (vowels)
-/\c\v([^aeiou]&\a){4}       : search for 4 consecutive consonants
-/\%>20l\%<30lgoat           : Search for goat between lines 20 and 30 [N]
-/^.\{-}home.\{-}\zshome/e   : match only the 2nd occurence in a line of "home" [N]
-:%s/home.\{-}\zshome/alone  : Substitute only the occurrence of home in any line [N]
+Specify what you are NOT searching for (vowels) >
+    /\c\v([^aeiou]&\a){4}       : search for 4 consecutive consonants
+    /\%>20l\%<30lgoat           : Search for goat between lines 20 and 30 [N]
+    /^.\{-}home.\{-}\zshome/e   : match only the 2nd occurence in a line of "home" [N]
+    %s/home.\{-}\zshome/alone  : Substitute only the occurrence of home in any line [N]
 
-" find str but not on lines containing tongue
-^\(.*tongue.*\)\@!.*nose.*$
-\v^((tongue)@!.)*nose((tongue)@!.)*$
-.*nose.*\&^\%(\%(tongue\)\@!.\)*$
-:v/tongue/s/nose/&/gic
+Find str but not on lines containing tongue >
+    ^\(.*tongue.*\)\@!.*nose.*$
+    \v^((tongue)@!.)*nose((tongue)@!.)*$
+    .*nose.*\&^\%(\%(tongue\)\@!.\)*$
+    v/tongue/s/nose/&/gic
 
 ==============================================================================
 SUBSTITUTION                                              *vimtips-substitution*
